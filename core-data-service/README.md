@@ -122,5 +122,16 @@ we recommend practical ways for troubleshooting to find and correct errors and p
 > CDS 및 ABAP RESTful 애플리케이션 프로그래밍 모델의 맥락에서 오류와 문제를 찾고 수정하기 위한 실용적인 문제 해결 방법을 제안합니다. 문제 해결에 필요한 도구들을 설명하고, 그 사용법도 안내합니다. 또한, CDS 모델을 개발할 때 마주칠 수 있는 몇 가지 함정도 함께 설명합니다.﻿
 
 
+An overview of the CDS annotations presented in this book
+is included in 
 
+### Appendix A 
+
+as a quick reference. For an overview of all available CDS annotations, refer to the SAP
+documentation.
+
+### Appendix B
+
+you can find an overview of how to migrate an application based on the ABAP programming model for SAP Fiori (that was the basic for transactional applications in
+the first edition of this book) to the ABAP RESTful application programming model.
 
