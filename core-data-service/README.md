@@ -27,15 +27,15 @@ provides the fundamentals and technical basics of CDS data models. For this purp
 @EndUserText.label: 'View Definition'
 //view definition
 define view entity Z_ViewDefinition
- //parameter definition
+//parameter definition
  with parameters
  P_SalesOrderType : auart
- //data source of selection with alias name
+//data source of selection with alias name
  as select from ZI_SalesOrderItem as ITEM
- //join
+//join
  left outer to exact one join ZI_SalesOrder as SO
  on SO.SalesOrder = ITEM.SalesOrder
- //association definition
+//association definition
  association [0..1] to ZI_Product as _Product on
  $projection.RenamedProduct = _Product.Product
 {
