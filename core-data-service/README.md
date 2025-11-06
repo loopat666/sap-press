@@ -191,6 +191,26 @@ define view entity ZZABAP02CDS2511_0005
 
 ```
 
+### Session Values
+
+```cds
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'View with Session Variables'
+@Metadata.ignorePropagatedAnnotations: true
+define view entity Z_ViewWithSessionVariables 
+  as select from t000
+{
+  $session.client          as ClientField,
+  $session.system_date     as SystemDateField,
+  $session.system_language as SystemLanguageField,
+  $session.user            as UserField,
+  $session.user_date       as UserDateField,
+  $session.user_timezone   as UserTimezoneField
+}
+where
+  mandt = $session.client
+
+```
 
 
 ## Chapter 3
