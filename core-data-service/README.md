@@ -161,25 +161,33 @@ define view entity Z_ViewWithSimpleTypes
 ### Case Statements
 
 ```cds
-define view entity Z_ViewWithCaseStatements
- as select from ZI_SalesOrder
+define view entity ZZABAP02CDS2511_0005
+  as select from spfli
 {
- key SalesOrder,
- case (SalesOrderType)
- when 'TAF' then 'X'
- when 'OAF' then 'X'
- else ''
- end as IsStandardOrder,
- cast( case (SalesOrderType)
- when 'TAF' then 'X'
- when 'OAF' then 'X'
- else ''
- end as abap.char(3) ) as IsStandardOrderAsChar3,
- case when SalesOrderType = 'TAF' then 'X'
- when SalesOrderType = 'OAF' then 'X'
- else ''
- end as IsStandardOrder2
-} 
+  key carrid                             as Carrid,
+  key connid                             as Connid,
+      countryfr                          as Countryfr,
+      cityfrom                           as Cityfrom,
+      airpfrom                           as Airpfrom,
+      countryto                          as Countryto,
+      cityto                             as Cityto,
+      airpto                             as Airpto,
+
+      case (carrid)
+          when 'AA' then 'A1'
+          when 'Az' then 'A2'
+          else '' end                    as isStandardOrder,
+
+      cast( case (carrid)
+         when 'AA' then 'A1-1'
+         when 'Az' then 'A2-2'
+         else '' end as abap.char( 4 ) ) as isStandardOrderChar4,
+
+      case when carrid = 'AA' then 'A1'
+           when carrid = 'AZ' then 'A2'
+           else '' end                   as isStandardOrder2
+
+}
 
 ```
 
