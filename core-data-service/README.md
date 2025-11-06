@@ -63,6 +63,101 @@ group by
  ITEM.Product 
 ```
 
+### Key Fields
+
+키필드의 정의.
+
+```cds
+define view entity ZI_SalesOrderItem
+ as select from zsalesorderitem
+{
+ key salesorder as SalesOrder,
+ key salesorderitem as SalesOrderItem,
+ product as Product
+} 
+
+```
+
+### Cast Operations
+
+타입변환
+
+```cds
+define view entity ZZABAP02CDS2511_0003
+  as select from t000
+{
+  key mandt      as client,
+      mtext      as Mtext,
+      ort01      as Ort01,
+      mwaer      as Mwaer,
+      adrnr      as Adrnr,
+      cccategory as Cccategory,
+      cccoractiv as Cccoractiv,
+      ccnocliind as Ccnocliind,
+      cccopylock as Cccopylock,
+      ccnocascad as Ccnocascad,
+      ccsoftlock as Ccsoftlock,
+      ccorigcont as Ccorigcont,
+      ccimaildis as Ccimaildis,
+      cctemplock as Cctemplock,
+      changeuser as Changeuser,
+      changedate as Changedate,
+      logsys     as Logsys,
+      logsys     as ProjectedField,
+      
+      // ---- Cast Operations ---
+      '20251101' as CharDate,
+      cast ( '20251101' as abap.dats ) as DateField,
+      cast( cast( 'E' as abap.lang ) as sylangu preserving type ) as LanguageField,
+      1.2 as FloatPointField,
+      fltp_to_dec( 1.2 as abap.dec( 4, 2 ) ) as DecimalField
+      
+      
+}
+```
+
+### Type Literals
+
+```cds
+@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Typed Literals'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
+define view entity ZZABAP02CDS2511_0004
+  as select from t000
+{
+  '  Char10  '                                            as CharacterValue,
+  cast( '  Char10  ' as abap.char(10) )                   as CastCharacterValue,
+  abap.char'  Char10  '                                   as TypedCharacterValue,
+  cast( abap.char'  Char10  ' as char10 preserving type ) as CastTypedCharacterValue,
+
+  1234.56                                                 as FloatingPointValue,
+  abap.fltp'1234.56'                                      as TypedFloatingPointValue,
+
+  fltp_to_dec(1234.56 as abap.dec(6,2))                   as ConvertedDecimalValue,
+  abap.dec'1234.56'                                       as TypedDecimalValue,
+  abap.dec'001234.5600'                                   as TypedDecimalValue2
+}
+
+```
+
+### Simple Types
+
+```cds
+define view entity Z_ViewWithSimpleTypes
+ as select distinct from t000
+{
+ cast ( abap.lang'E' as ZBT_LanguageA preserving type ) as Language1,
+ cast ( abap.lang'E' as ZBT_LanguageD preserving type ) as Language2
+} 
+
+```
+
 ## Chapter 3
 
 we explain the basics, definition, and usage of associations in CDS models via ABAP implementation and special association types, such as compositions. 
