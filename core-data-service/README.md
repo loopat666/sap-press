@@ -158,6 +158,33 @@ define view entity Z_ViewWithSimpleTypes
 
 ```
 
+### Case Statements
+
+```cds
+define view entity Z_ViewWithCaseStatements
+ as select from ZI_SalesOrder
+{
+ key SalesOrder,
+ case (SalesOrderType)
+ when 'TAF' then 'X'
+ when 'OAF' then 'X'
+ else ''
+ end as IsStandardOrder,
+ cast( case (SalesOrderType)
+ when 'TAF' then 'X'
+ when 'OAF' then 'X'
+ else ''
+ end as abap.char(3) ) as IsStandardOrderAsChar3,
+ case when SalesOrderType = 'TAF' then 'X'
+ when SalesOrderType = 'OAF' then 'X'
+ else ''
+ end as IsStandardOrder2
+} 
+
+```
+
+
+
 ## Chapter 3
 
 we explain the basics, definition, and usage of associations in CDS models via ABAP implementation and special association types, such as compositions. 
